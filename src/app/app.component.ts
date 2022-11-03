@@ -36,7 +36,7 @@ import { Component } from "@angular/core";
   ],
 })
 export class AppComponent {
-  title = "sofftek-angular_intro-noviembre";
+  title = "Astro Bookings";
   agencies = [
     { name: "Space X", range: "Interplanetary", status: "Active" },
     { name: "Blue Origin", range: "Orbital", status: "Active" },
