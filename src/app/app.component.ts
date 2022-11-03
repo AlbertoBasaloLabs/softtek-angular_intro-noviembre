@@ -14,9 +14,26 @@ import { Component } from "@angular/core";
         </li>
       </ng-container>
     </ul>
+    <h3>Offering {{ trips.length }} trips</h3>
+    <ul>
+      <ng-container *ngFor="let trip of trips">
+        <li class="{{ trip.status | lowercase }}">
+          {{ trip.destination }}
+        </li>
+      </ng-container>
+    </ul>
     <router-outlet></router-outlet>
   `,
-  styles: [],
+  styles: [
+    `
+      .confirmed {
+        color: green;
+      }
+      .waiting {
+        color: orange;
+      }
+    `,
+  ],
 })
 export class AppComponent {
   title = "sofftek-angular_intro-noviembre";
@@ -52,7 +69,7 @@ export class AppComponent {
       flightPrice: 8400000,
       stayingNightPrice: 10000,
       kind: "WithStay",
-      status: "Waiting",
+      status: "Confirmed",
       extraLuggagePricePerKilo: 50000,
       premiumFoodPrice: 0,
     },
