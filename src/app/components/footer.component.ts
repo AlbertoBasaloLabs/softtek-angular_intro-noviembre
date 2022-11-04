@@ -5,9 +5,9 @@ import { Component, Input } from "@angular/core";
   template: `
     <footer>
       <h6>
-        <a [href]="repoUrl">{{ title }}</a>
+        <app-link [caption]="title" [url]="repoUrl"></app-link>
         made by
-        <a [href]="authorUrl">{{ author }}</a>
+        <app-link [caption]="author" [url]="authorUrl"></app-link>
       </h6>
     </footer>
   `,
