@@ -5,7 +5,11 @@ import { Component, Input } from "@angular/core";
   template: `
     <footer>
       <h6>
-        <app-link [caption]="title" [url]="repoUrl"></app-link>
+        <app-link
+          [caption]="title"
+          [url]="repoUrl"
+          title="classroomLabs/softtek-angular_intro-noviembre"
+        ></app-link>
         made by
         <app-link [caption]="author" [url]="authorUrl"></app-link>
       </h6>
