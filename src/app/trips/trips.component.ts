@@ -15,7 +15,16 @@ import { Component } from "@angular/core";
       </ng-container>
     </ul>
   `,
-  styles: [],
+  styles: [
+    `
+      .confirmed {
+        color: green;
+      }
+      .waiting {
+        color: orange;
+      }
+    `,
+  ],
 })
 export class TripsComponent {
   trips = [
