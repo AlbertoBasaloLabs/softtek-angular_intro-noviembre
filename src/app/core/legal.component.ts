@@ -5,7 +5,7 @@ import { Component, OnInit } from "@angular/core";
   template: `
     <p>
       ©️ Copyright 2022
-      <a href="/about">About us</a>
+      <a routerLink="/about">About us</a>
     </p>
   `,
   styles: [],
