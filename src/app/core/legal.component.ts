@@ -6,6 +6,8 @@ import { Component, OnInit } from "@angular/core";
     <p>
       ©️ Copyright 2022
       <a [routerLink]="['/', 'about']">About us</a>
+      ➖
+      <a [routerLink]="['/', 'contact']">📧 Get in contact</a>
     </p>
   `,
   styles: [],
