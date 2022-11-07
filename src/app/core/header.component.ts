@@ -4,7 +4,7 @@ import { Component, Input } from "@angular/core";
   selector: "app-header",
   template: `
     <header>
-      <h1>{{ title }}</h1>
+      <a href="/">{{ title }}</a>
     </header>
   `,
   styles: [],
