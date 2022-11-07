@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "app-legal",
+  selector: "app-home",
   template: `
-    <p>©️ Copyright 2022</p>
+    <app-agencies></app-agencies>
+    <app-trips></app-trips>
   `,
   styles: [],
 })
-export class LegalComponent implements OnInit {
+export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,15 +1,14 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
-import { AgenciesComponent } from "./agencies/agencies.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CoreModule } from "./core/core.module";
-import { TripsComponent } from "./trips/trips.component";
+import { HomeModule } from "./home/home.module";
 
 @NgModule({
-  declarations: [AppComponent, AgenciesComponent, TripsComponent],
-  imports: [BrowserModule, AppRoutingModule, CoreModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, CoreModule, HomeModule],
   providers: [],
   bootstrap: [AppComponent],
 })
