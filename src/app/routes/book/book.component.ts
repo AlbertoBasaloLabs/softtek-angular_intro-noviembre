@@ -11,6 +11,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class BookComponent {
   tripId = "";
+
   constructor(route: ActivatedRoute) {
     this.tripId = route.snapshot.paramMap.get("idTrip") || "";
   }
