@@ -1,20 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-book',
+  selector: "app-book",
   template: `
-    <p>
-      book works!
-    </p>
+    <h3> Make a booking for trip: </h3>
+    <h2>{{ tripId }}</h2>
   `,
-  styles: [
-  ]
+  styles: [],
 })
-export class BookComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class BookComponent {
+  tripId = "";
+  constructor(route: ActivatedRoute) {
+    this.tripId = route.snapshot.paramMap.get("idTrip") || "";
   }
-
 }
