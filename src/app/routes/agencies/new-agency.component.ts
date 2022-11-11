@@ -1,21 +1,32 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-new-agency",
   template: `
-    <form>
-      <label>Name:</label>
-      <input type="text" placeholder="name" />
-      <label>Range:</label>
-      <input type="text" placeholder="range" />
-      <label>Status:</label>
-      <input type="text" placeholder="status" />
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <label>Name:</label>
+        <input placeholder="Your name" formControlName="name" />
+        <label>Range:</label>
+        <input formControlName="range" />
+        <label>Status:</label>
+        <input placeholder="status" formControlName="status" />
+      </fieldset>
+      <button type="submit">Save agency</button>
     </form>
   `,
-  styles: [],
 })
-export class NewAgencyComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class NewAgencyComponent {
+  form: FormGroup;
+  constructor(formBuilder: FormBuilder) {
+    this.form = formBuilder.group({
+      name: "",
+      range: "",
+      status: "Pending",
+    });
+  }
+  onSubmit() {
+    console.log("guardando", this.form.value);
+  }
 }
