@@ -20,7 +20,11 @@ import { ActivatedRoute } from "@angular/router";
             type="email"
             name="customerEmail"
             placeholder="Your email"
-            formControlName="customerEmail" />
+            formControlName="customerEmail"
+            [attr.aria-invalid]="form.get('customerEmail')?.invalid" />
+          <div *ngIf="mustShowError('customerEmail')">
+            {{ form.get("customerEmail")?.errors | json }}
+          </div>
         </div>
         <div>
           <label for="gender">Gender:</label>
@@ -47,7 +51,11 @@ import { ActivatedRoute } from "@angular/router";
             type="number"
             name="seats"
             placeholder="How many passengers?"
-            formControlName="seats" />
+            formControlName="seats"
+            [attr.aria-invalid]="form.get('seats')?.invalid" />
+          <div *ngIf="mustShowError('seats')">
+            {{ form.get("seats")?.errors | json }}
+          </div>
         </div>
         <div>
           <label for="premiumFood">Premium food:</label>
@@ -58,13 +66,19 @@ import { ActivatedRoute } from "@angular/router";
         </div>
         <div>
           <label for="paymentMethod">Payment Method:</label>
-          <select name="paymentMethod" formControlName="paymentMethod">
+          <select
+            name="paymentMethod"
+            formControlName="paymentMethod"
+            [attr.aria-invalid]="form.get('paymentMethod')?.invalid">
             <option
               *ngFor="let pmo of paymentMethodOptions"
               [value]="pmo.value">
               {{ pmo.label }}
             </option>
           </select>
+          <div *ngIf="mustShowError('paymentMethod')">
+            {{ form.get("paymentMethod")?.errors | json }}
+          </div>
         </div>
         <div>
           <label for="status">Booking Status:</label>
@@ -126,6 +140,12 @@ export class BookComponent {
       date: new Date().toUTCString(),
       status: this.statusOptions[0].value,
     });
+  }
+
+  mustShowError(formControlName: string) {
+    const control = this.form.get(formControlName);
+    if (!control) return false;
+    return control.invalid && (control.dirty || control.touched);
   }
 
   onSubmit() {
