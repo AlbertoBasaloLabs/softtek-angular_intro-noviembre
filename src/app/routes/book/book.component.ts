@@ -1,5 +1,10 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -73,15 +78,22 @@ import { ActivatedRoute } from "@angular/router";
           </span>
         </div>
       </fieldset>
-      <button type="submit">Make the booking</button>
+      <button type="submit" [disabled]="form.invalid">Make the booking</button>
     </form>
   `,
   styles: [],
 })
 export class BookComponent {
   tripId = "";
+  trip = {
+    id: this.tripId,
+    name: this.tripId,
+    price: 1000,
+    places: 5,
+  };
   form: FormGroup;
   paymentMethodOptions = [
+    { value: "", label: "👇🏼 Choose an option" },
     { value: "cash", label: "💵 Cash" },
     { value: "credit", label: "💳 Card" },
     { value: "transfer", label: "🏦 Bank" },
@@ -97,13 +109,22 @@ export class BookComponent {
     this.tripId = route.snapshot.paramMap.get("idTrip") || "";
     this.form = formBuilder.group({
       tripId: this.tripId,
-      customerEmail: "",
+      customerEmail: new FormControl("", [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(8),
+      ]),
       gender: "",
-      seats: 0,
+      seats: new FormControl(1, [
+        Validators.min(1),
+        Validators.max(this.trip.places),
+      ]),
       premiumFood: false,
-      paymentMethod: "",
+      paymentMethod: new FormControl(this.paymentMethodOptions[0].value, [
+        Validators.required,
+      ]),
       date: new Date().toUTCString(),
-      status: "pending",
+      status: this.statusOptions[0].value,
     });
   }
 
