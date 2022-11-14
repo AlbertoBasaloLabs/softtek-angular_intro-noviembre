@@ -83,14 +83,15 @@ export class NewAgencyComponent {
   form: FormGroup;
 
   constructor(formBuilder: FormBuilder) {
+    // construir el formulario
     this.form = formBuilder.group({
-      name: ["", Validators.required],
-      range: ["", [Validators.maxLength(10)]],
+      name: ["", Validators.required], // validación simple
+      range: ["", [Validators.required, Validators.maxLength(10)]], // validación múltiple
       status: new FormControl("Pending", [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(10),
-      ]),
+      ]), // usar FormControl
     });
   }
 
