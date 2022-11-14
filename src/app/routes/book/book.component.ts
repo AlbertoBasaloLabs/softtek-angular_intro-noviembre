@@ -16,15 +16,15 @@ import { ActivatedRoute } from "@angular/router";
       <fieldset>
         <div>
           <label for="email">Customer Email:</label>
+          <div *ngIf="mustShowError('customerEmail')">
+            {{ form.get("customerEmail")?.errors | json }}
+          </div>
           <input
             type="email"
             name="customerEmail"
             placeholder="Your email"
             formControlName="customerEmail"
             [attr.aria-invalid]="form.get('customerEmail')?.invalid" />
-          <div *ngIf="mustShowError('customerEmail')">
-            {{ form.get("customerEmail")?.errors | json }}
-          </div>
         </div>
         <div>
           <label for="gender">Gender:</label>
