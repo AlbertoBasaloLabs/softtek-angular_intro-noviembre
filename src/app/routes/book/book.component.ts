@@ -80,6 +80,7 @@ import { ActivatedRoute } from "@angular/router";
             {{ form.get("paymentMethod")?.errors | json }}
           </div>
         </div>
+
         <div>
           <label for="status">Booking Status:</label>
           <span *ngFor="let so of statusOptions">
@@ -90,6 +91,13 @@ import { ActivatedRoute } from "@angular/router";
               formControlName="status" />
             <label>{{ so.label }}</label>
           </span>
+        </div>
+        <div>
+          <label for="acceptedTerms">Terms Accepted:</label>
+          <input
+            type="checkbox"
+            name="acceptedTerms"
+            formControlName="acceptedTerms" />
         </div>
       </fieldset>
       <button type="submit" [disabled]="form.invalid">Make the booking</button>
@@ -139,6 +147,7 @@ export class BookComponent {
       ]),
       date: new Date().toUTCString(),
       status: this.statusOptions[0].value,
+      acceptedTerms: new FormControl(false, [Validators.requiredTrue]),
     });
   }
 
