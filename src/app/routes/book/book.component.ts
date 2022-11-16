@@ -20,6 +20,7 @@ import { ActivatedRoute } from "@angular/router";
             {{ form.get("customerEmail")?.errors | json }}
           </div>
           <input
+            id="email"
             type="email"
             name="customerEmail"
             placeholder="Your email"
@@ -30,6 +31,7 @@ import { ActivatedRoute } from "@angular/router";
           <label for="gender">Gender:</label>
           <span>
             <input
+              id="gender-male"
               type="radio"
               name="gender"
               value="male"
@@ -38,6 +40,7 @@ import { ActivatedRoute } from "@angular/router";
           </span>
           <span>
             <input
+              id="gender-female"
               type="radio"
               name="gender"
               value="female"
@@ -48,6 +51,7 @@ import { ActivatedRoute } from "@angular/router";
         <div>
           <label for="seats">Seats reserved:</label>
           <input
+            id="seats"
             type="number"
             name="seats"
             placeholder="How many passengers?"
@@ -60,6 +64,7 @@ import { ActivatedRoute } from "@angular/router";
         <div>
           <label for="premiumFood">Premium food:</label>
           <input
+            id="premiumFood"
             type="checkbox"
             name="premiumFood"
             formControlName="premiumFood" />
@@ -67,6 +72,7 @@ import { ActivatedRoute } from "@angular/router";
         <div>
           <label for="paymentMethod">Payment Method:</label>
           <select
+            id="paymentMethod"
             name="paymentMethod"
             formControlName="paymentMethod"
             [attr.aria-invalid]="form.get('paymentMethod')?.invalid">
@@ -85,6 +91,7 @@ import { ActivatedRoute } from "@angular/router";
           <label for="status">Booking Status:</label>
           <span *ngFor="let so of statusOptions">
             <input
+              id="status-{{ so.value }}"
               type="radio"
               name="status"
               [value]="so.value"
@@ -95,6 +102,7 @@ import { ActivatedRoute } from "@angular/router";
         <div>
           <label for="acceptedTerms">Terms Accepted:</label>
           <input
+            id="acceptedTerms"
             type="checkbox"
             name="acceptedTerms"
             formControlName="acceptedTerms" />
