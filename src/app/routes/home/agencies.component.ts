@@ -1,5 +1,6 @@
+import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
-
+import { Agency } from "src/app/models/agency.interface";
 @Component({
   selector: "app-agencies",
   template: `
@@ -17,12 +18,25 @@ import { Component } from "@angular/core";
   styles: [],
 })
 export class AgenciesComponent {
-  agencies = [
-    { name: "Space X", range: "Interplanetary", status: "Active" },
-    { name: "Blue Origin", range: "Orbital", status: "Active" },
-    { name: "Virgin Galactic", range: "Orbital", status: "Pending" },
-  ];
-  activeAgenciesCounter = this.agencies.filter(
-    (agency) => agency.status === "Active"
-  ).length;
+  agencies: Agency[] = [];
+  activeAgenciesCounter = 0;
+
+  constructor(private http: HttpClient) {
+    this.loadAgencies();
+  }
+
+  loadAgencies() {
+    this.http
+      .get<Agency[]>("http://localhost:3000/agencies")
+      .subscribe((agencies) => {
+        this.agencies = agencies;
+        console.log("agencies: " + this.agencies.length);
+        this.activeAgenciesCounter = this.getActiveAgenciesCounter();
+      });
+    console.log("agencies: " + this.agencies.length);
+  }
+
+  getActiveAgenciesCounter() {
+    return this.agencies.filter((agency) => agency.status === "Active").length;
+  }
 }
