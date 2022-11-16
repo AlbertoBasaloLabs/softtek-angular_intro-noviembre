@@ -6,6 +6,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { FormsService } from "src/app/services/forms.service";
+import { OptionsService } from "src/app/services/options.service";
 
 @Component({
   selector: "app-book",
@@ -122,20 +124,15 @@ export class BookComponent {
     places: 5,
   };
   form: FormGroup;
-  paymentMethodOptions = [
-    { value: "", label: "👇🏼 Choose an option" },
-    { value: "cash", label: "💵 Cash" },
-    { value: "credit", label: "💳 Card" },
-    { value: "transfer", label: "🏦 Bank" },
-    { value: "crypto", label: "🪙 Crypto" },
-  ];
-  statusOptions = [
-    { value: "pending", label: "🕒 Pending" },
-    { value: "confirmed", label: "✅ Confirmed" },
-    { value: "cancelled", label: "❌ Cancelled" },
-  ];
+  paymentMethodOptions = this.options.paymentMethodOptions;
+  statusOptions = this.options.statusOptions;
 
-  constructor(route: ActivatedRoute, formBuilder: FormBuilder) {
+  constructor(
+    route: ActivatedRoute,
+    formBuilder: FormBuilder,
+    private options: OptionsService,
+    private forms: FormsService
+  ) {
     this.tripId = route.snapshot.paramMap.get("idTrip") || "";
     this.form = formBuilder.group({
       tripId: this.tripId,
@@ -160,9 +157,7 @@ export class BookComponent {
   }
 
   mustShowError(formControlName: string) {
-    const control = this.form.get(formControlName);
-    if (!control) return false;
-    return control.invalid && (control.dirty || control.touched);
+    return this.forms.mustShowError(this.form, formControlName);
   }
 
   onSubmit() {
