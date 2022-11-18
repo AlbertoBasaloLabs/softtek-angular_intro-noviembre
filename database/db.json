@@ -19,7 +19,20 @@
       "status": "Pending"
     }
   ],
-  "bookings": [],
+  "bookings": [
+    {
+      "tripId": "space-y-moon-1",
+      "customerEmail": "mark@fb.com",
+      "gender": "male",
+      "seats": 2,
+      "premiumFood": false,
+      "paymentMethod": "crypto",
+      "date": "Fri, 18 Nov 2022 13:26:55 GMT",
+      "status": "pending",
+      "acceptedTerms": true,
+      "id": 1
+    }
+  ],
   "trips": [
     {
       "id": "space-y-moon-1",

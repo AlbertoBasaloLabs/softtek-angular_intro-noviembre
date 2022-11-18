@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ApiService } from "src/app/services/api.service";
 import { FormsService } from "src/app/services/forms.service";
 import { OptionsService } from "src/app/services/options.service";
@@ -129,14 +129,15 @@ export class BookComponent {
   statusOptions = this.options.statusOptions;
 
   constructor(
-    route: ActivatedRoute,
-    formBuilder: FormBuilder,
-    private options: OptionsService,
+    private api: ApiService,
+    private formBuilder: FormBuilder,
     private forms: FormsService,
-    private api: ApiService
+    private options: OptionsService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
-    this.tripId = route.snapshot.paramMap.get("idTrip") || "";
-    this.form = formBuilder.group({
+    this.tripId = this.route.snapshot.paramMap.get("idTrip") || "";
+    this.form = this.formBuilder.group({
       tripId: this.tripId,
       customerEmail: new FormControl("", [
         Validators.required,
@@ -165,6 +166,8 @@ export class BookComponent {
   onSubmit() {
     console.log("submitting...", this.form.value);
     const newBooking = this.form.value;
-    this.api.postBooking$(newBooking).subscribe();
+    this.api
+      .postBooking$(newBooking)
+      .subscribe(() => this.router.navigate(["/bookings"]));
   }
 }
