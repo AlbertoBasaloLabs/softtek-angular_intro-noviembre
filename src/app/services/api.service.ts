@@ -22,6 +22,9 @@ export class ApiService {
   postBooking$(booking: Booking) {
     return this.http.post<Booking>(this.apiUrl + "/bookings", booking);
   }
+  deleteBooking$(tripId: string) {
+    return this.http.delete(this.apiUrl + "/bookings/" + tripId);
+  }
 
   getTrips$() {
     return this.http.get<Trip[]>(this.apiUrl + "/trips");

@@ -19,32 +19,7 @@
       "status": "Pending"
     }
   ],
-  "bookings": [
-    {
-      "tripId": "space-y-moon-1",
-      "customerEmail": "elon@mars.com",
-      "gender": "male",
-      "seats": 2,
-      "premiumFood": true,
-      "paymentMethod": "cash",
-      "date": "Fri, 18 Nov 2022 12:31:33 GMT",
-      "status": "confirmed",
-      "acceptedTerms": true,
-      "id": 1
-    },
-    {
-      "tripId": "space-y-moon-1",
-      "customerEmail": "mark@fb.com",
-      "gender": "male",
-      "seats": 1,
-      "premiumFood": false,
-      "paymentMethod": "crypto",
-      "date": "Fri, 18 Nov 2022 12:38:39 GMT",
-      "status": "pending",
-      "acceptedTerms": true,
-      "id": 2
-    }
-  ],
+  "bookings": [],
   "trips": [
     {
       "id": "space-y-moon-1",

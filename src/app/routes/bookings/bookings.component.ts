@@ -9,6 +9,7 @@ import { ApiService } from "src/app/services/api.service";
     <ul>
       <li *ngFor="let booking of bookings">
         {{ booking.customerEmail }} - {{ booking.tripId }}
+        <button (click)="onDeleteClick(booking.id)">🗑️</button>
       </li>
     </ul>
     <pre>{{ errorMessage }}</pre>
@@ -40,4 +41,17 @@ export class BookingsComponent implements OnInit {
       error: (error) => (this.errorMessage = error.message),
     });
   }
+
+  onDeleteClick(bookingId: string) {
+    console.log("Deleting booking for trip: ", bookingId);
+    this.api.deleteBooking$(bookingId).subscribe({
+      next: () =>
+        (this.bookings = this.bookings.filter((b) => b.id !== bookingId)),
+      error: (error) => (this.errorMessage = error.message),
+    });
+  }
 }
+// this.api.deleteBooking$(bookingId).subscribe({
+//   next: () => (this.bookings = this.bookings.filter((b) => b.id !== bookingId)),
+//   error: (error) => (this.errorMessage = error.message),
+// });
