@@ -21,13 +21,23 @@ export class BookingsComponent implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.api.getBookings$().subscribe(
-      (bookings) => {
-        this.bookings = bookings;
-      },
-      (error) => {
-        this.errorMessage = error.message;
-      }
-    );
+    // this.api.getBookings$().subscribe(
+    //   (bookings) => {
+    //     this.bookings = bookings;
+    //   },
+    //   (error) => {
+    //     this.errorMessage = error.message;
+    //   }
+    // );
+
+    // this.api.getBookings$().subscribe(
+    //   (bookings) => (this.bookings = bookings),
+    //   (error) => (this.errorMessage = error.message)
+    // );
+
+    this.api.getBookings$().subscribe({
+      next: (bookings) => (this.bookings = bookings),
+      error: (error) => (this.errorMessage = error.message),
+    });
   }
 }
