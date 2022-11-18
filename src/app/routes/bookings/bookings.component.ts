@@ -11,17 +11,23 @@ import { ApiService } from "src/app/services/api.service";
         {{ booking.customerEmail }} - {{ booking.tripId }}
       </li>
     </ul>
+    <pre>{{ errorMessage }}</pre>
   `,
   styles: [],
 })
 export class BookingsComponent implements OnInit {
   bookings: Booking[] = [];
-
+  errorMessage = "";
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.api.getBookings$().subscribe((bookings) => {
-      this.bookings = bookings;
-    });
+    this.api.getBookings$().subscribe(
+      (bookings) => {
+        this.bookings = bookings;
+      },
+      (error) => {
+        this.errorMessage = error.message;
+      }
+    );
   }
 }
