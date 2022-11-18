@@ -1,10 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from "@angular/forms";
+import { Agency } from "src/app/models/agency.interface";
 import { FormsService } from "src/app/services/forms.service";
 
 @Component({
@@ -14,20 +15,6 @@ import { FormsService } from "src/app/services/forms.service";
       <fieldset>
         <div>
           <label>Name:</label>
-          <!-- <em>
-            <small>
-              Name Valid: <code>{{ form.get("name")?.valid }}</code>
-            </small>
-            <small>
-              Pristine: <code>{{ form.get("name")?.pristine }}</code>
-            </small>
-            <small>
-              Touched: <code>{{ form.get("name")?.touched }}</code>
-            </small>
-            <small>
-              Dirty: <code>{{ form.get("name")?.dirty }}</code>
-            </small>
-          </em> -->
           <div *ngIf="mustShowError('name')">
             {{ form.get("name")?.errors | json }}
           </div>
@@ -38,14 +25,6 @@ import { FormsService } from "src/app/services/forms.service";
         </div>
         <div>
           <label>Range:</label>
-          <!-- <em>
-            <small>
-              Range Valid: <code>{{ form.get("range")?.valid }}</code>
-            </small>
-            <small>
-              Range Errors: <code>{{ form.get("range")?.errors | json }}</code>
-            </small>
-          </em> -->
           <div *ngIf="mustShowError('range')">
             {{ form.get("range")?.errors | json }}
           </div>
@@ -55,15 +34,6 @@ import { FormsService } from "src/app/services/forms.service";
         </div>
         <div>
           <label>Status:</label>
-          <!-- <em>
-            <small>
-              Status Valid: <code>{{ form.get("status")?.valid }}</code>
-            </small>
-            <small>
-              Status Errors:
-              <code>{{ form.get("status")?.errors | json }}</code>
-            </small>
-          </em> -->
           <div *ngIf="mustShowError('status')">
             {{ form.get("status")?.errors | json }}
           </div>
@@ -73,14 +43,12 @@ import { FormsService } from "src/app/services/forms.service";
             [attr.aria-invalid]="form.get('status')?.invalid" />
         </div>
       </fieldset>
-      <!-- <small>
-        Form Valid: <code>{{ form.valid }}</code>
-      </small> -->
       <button type="submit" [disabled]="form.invalid">Save agency</button>
     </form>
   `,
 })
 export class NewAgencyComponent {
+  @Output() saveAgency = new EventEmitter<Agency>();
   form: FormGroup;
 
   constructor(formBuilder: FormBuilder, private forms: FormsService) {
@@ -101,6 +69,9 @@ export class NewAgencyComponent {
   }
 
   onSubmit() {
-    console.log("guardando", this.form.value);
+    if (this.form.valid) {
+      this.saveAgency.emit(this.form.value);
+      this.form.reset();
+    }
   }
 }

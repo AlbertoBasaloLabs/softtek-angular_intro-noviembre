@@ -17,6 +17,12 @@
       "name": "Virgin Way",
       "range": "Orbital",
       "status": "Pending"
+    },
+    {
+      "name": "Sofftek Stars",
+      "range": "Asteroid",
+      "status": "Pending",
+      "id": "dFLt-eA"
     }
   ],
   "bookings": [

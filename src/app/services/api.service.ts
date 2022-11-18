@@ -15,6 +15,9 @@ export class ApiService {
   getAgencies$() {
     return this.http.get<Agency[]>(this.apiUrl + "/agencies");
   }
+  postAgency$(agency: Agency) {
+    return this.http.post<Agency>(this.apiUrl + "/agencies", agency);
+  }
 
   getBookings$() {
     return this.http.get<Booking[]>(this.apiUrl + "/bookings");
