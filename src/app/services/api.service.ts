@@ -12,15 +12,18 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getAgencies() {
+  getAgencies$() {
     return this.http.get<Agency[]>(this.apiUrl + "/agencies");
   }
 
-  getBookings() {
+  getBookings$() {
     return this.http.get<Booking[]>(this.apiUrl + "/bookings");
   }
+  postBooking$(booking: Booking) {
+    return this.http.post<Booking>(this.apiUrl + "/bookings", booking);
+  }
 
-  getTrips() {
+  getTrips$() {
     return this.http.get<Trip[]>(this.apiUrl + "/trips");
   }
 }

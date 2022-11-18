@@ -30,10 +30,10 @@ export class AgenciesComponent {
       .get<Agency[]>("http://localhost:3000/agencies")
       .subscribe((agencies) => {
         this.agencies = agencies;
-        console.log("agencies: " + this.agencies.length);
+        console.log("1️⃣ antes en el espacio agencies: " + this.agencies.length);
         this.activeAgenciesCounter = this.getActiveAgenciesCounter();
       });
-    console.log("agencies: " + this.agencies.length);
+    console.log("0️⃣ antes en el tiempo agencies: " + this.agencies.length);
   }
 
   getActiveAgenciesCounter() {

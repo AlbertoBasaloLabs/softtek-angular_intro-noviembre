@@ -39,6 +39,6 @@ export class TripsComponent {
   }
 
   loadTrips() {
-    this.api.getTrips().subscribe((trips) => (this.trips = trips));
+    this.api.getTrips$().subscribe((trips) => (this.trips = trips));
   }
 }

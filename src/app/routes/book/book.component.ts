@@ -6,6 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { ApiService } from "src/app/services/api.service";
 import { FormsService } from "src/app/services/forms.service";
 import { OptionsService } from "src/app/services/options.service";
 
@@ -131,7 +132,8 @@ export class BookComponent {
     route: ActivatedRoute,
     formBuilder: FormBuilder,
     private options: OptionsService,
-    private forms: FormsService
+    private forms: FormsService,
+    private api: ApiService
   ) {
     this.tripId = route.snapshot.paramMap.get("idTrip") || "";
     this.form = formBuilder.group({
@@ -161,6 +163,8 @@ export class BookComponent {
   }
 
   onSubmit() {
-    console.log("submit", this.form.value);
+    console.log("submitting...", this.form.value);
+    const newBooking = this.form.value;
+    this.api.postBooking$(newBooking).subscribe();
   }
 }
