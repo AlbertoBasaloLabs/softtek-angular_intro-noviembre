@@ -23,7 +23,10 @@ export class AgenciesComponent implements OnInit {
 
   onSaveAgency(newAgency: Agency) {
     this.api.postAgency$(newAgency).subscribe((agencyResponse) => {
-      this.agenciesData.push(agencyResponse);
+      // this.agenciesData.push(agencyResponse);
+      this.api.getAgencies$().subscribe((agenciesResponse) => {
+        this.agenciesData = agenciesResponse;
+      });
     });
   }
 }

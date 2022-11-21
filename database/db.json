@@ -23,6 +23,12 @@
       "range": "Asteroid",
       "status": "Pending",
       "id": "dFLt-eA"
+    },
+    {
+      "name": "Artemis",
+      "range": "Lunar",
+      "status": "Pending",
+      "id": "4Cnx4bT"
     }
   ],
   "bookings": [
