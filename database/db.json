@@ -55,6 +55,30 @@
       "status": "pending",
       "acceptedTerms": true,
       "id": 2
+    },
+    {
+      "tripId": "green-origin-iss-4",
+      "customerEmail": "elon@mars.com",
+      "gender": "male",
+      "seats": 2,
+      "premiumFood": false,
+      "paymentMethod": "crypto",
+      "date": "Mon, 21 Nov 2022 15:57:51 GMT",
+      "status": "pending",
+      "acceptedTerms": true,
+      "id": 3
+    },
+    {
+      "tripId": "green-origin-low-orbit-3",
+      "customerEmail": "bill@gates.org",
+      "gender": "male",
+      "seats": 1,
+      "premiumFood": false,
+      "paymentMethod": "credit",
+      "date": "Mon, 21 Nov 2022 15:58:46 GMT",
+      "status": "pending",
+      "acceptedTerms": true,
+      "id": 4
     }
   ],
   "trips": [

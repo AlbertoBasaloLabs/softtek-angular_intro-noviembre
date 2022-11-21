@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { map, Observable, of } from "rxjs";
+import { map, Observable, of, tap } from "rxjs";
 import { ApiService } from "src/app/services/api.service";
 
 type BookingView = {
@@ -29,9 +29,11 @@ export class BookingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingViews$ = this.api.getBookings$().pipe(
+      tap((bookings) => console.log("Bookings from API: ", bookings)),
       map((bookings) =>
         bookings.filter((booking) => booking.paymentMethod === "crypto")
       ),
+      tap((bookings) => console.log("Crypto Bookings : ", bookings)),
       map((bookings) =>
         bookings.map((booking) => ({
           id: booking.id,
@@ -44,7 +46,8 @@ export class BookingsComponent implements OnInit {
             "_" +
             booking.paymentMethod,
         }))
-      )
+      ),
+      tap((bookings) => console.log("View Bookings : ", bookings))
     );
 
     // this.api.getBookings$().subscribe(
