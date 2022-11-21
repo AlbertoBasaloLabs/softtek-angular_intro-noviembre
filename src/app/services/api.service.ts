@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getAgencies$() {
+  public getAgencies$() {
     return this.http.get<Agency[]>(this.apiUrl + "/agencies");
   }
   postAgency$(agency: Agency) {
