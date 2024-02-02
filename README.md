@@ -1,4 +1,4 @@
-# Sofftek Angular Intro Noviembre
+# Softtek Angular Intro Noviembre
 
 [Repository](https://github.com/classroomLabs/softtek-angular_intro-noviembre)
 
